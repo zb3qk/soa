@@ -49,3 +49,66 @@ pub fn assign_task(task_id: &str, to: &str) {
     println!("Assigning task '{}' to agent '{}'", task_id, to);
     println!("✅ Assignment complete.");
 }
+
+pub enum OutputFormat {
+    Json,
+    Toml,
+    Yaml,
+    Csv,
+}
+
+pub fn config_add(output: Option<OutputFormat>) {
+    let args = crate::agentctl::config::add::AddArgs { output };
+    crate::agentctl::config::add::add(&args);
+}
+
+pub fn config_show(output: Option<OutputFormat>) {
+    let args = crate::agentctl::config::show::ShowArgs { output };
+    crate::agentctl::config::show::show(&args);
+}
+
+pub fn env_show(output: Option<OutputFormat>) {
+    let args = crate::agentctl::env::show::ShowArgs { output };
+    crate::agentctl::env::show::show(&args);
+}
+
+pub fn env_set(profile_id: &str, output: Option<OutputFormat>) {
+    let args = crate::agentctl::env::set::SetArgs {
+        profile_id: profile_id.to_string(),
+        output,
+    };
+    crate::agentctl::env::set::set(&args);
+}
+
+pub fn describe(id: &str, output: Option<OutputFormat>) {
+    let args = crate::agentctl::describe::DescribeArgs {
+        id: id.to_string(),
+        output,
+    };
+    crate::agentctl::describe::describe(&args);
+}
+
+pub fn deploy(id: &str, output: Option<OutputFormat>) {
+    let args = crate::agentctl::deploy::DeployArgs {
+        id: id.to_string(),
+        output,
+    };
+    crate::agentctl::deploy::deploy(&args);
+}
+
+pub fn invoke(id: &str, input: &str, output: Option<OutputFormat>) {
+    let args = crate::agentctl::invoke::InvokeArgs {
+        id: id.to_string(),
+        input: input.to_string(),
+        output,
+    };
+    crate::agentctl::invoke::invoke(&args);
+}
+
+pub fn list(id: &str, output: Option<OutputFormat>) {
+    let args = crate::agentctl::list::ListArgs {
+        id: id.to_string(),
+        output,
+    };
+    crate::agentctl::list::list(&args);
+}
