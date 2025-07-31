@@ -1,6 +1,6 @@
 pub mod list;
-mod status;
-mod describe;
+pub(crate) mod status;
+pub(crate) mod describe;
 
 use clap::{Subcommand, Args};
 
