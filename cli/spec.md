@@ -13,6 +13,8 @@ This document outlines the specification for the CLI of the project.
 7. agentctl invoke <id> --input="<content>" 
 8. agentctl list <id>
 
+The `config` commands read and write a TOML file located at `~/.agentctl/config.toml`.
+
 
 All commands have the following flags:
 1. --output / -o json/toml/yaml/csv

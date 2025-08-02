@@ -1,5 +1,6 @@
 pub mod add;
 pub mod show;
+pub mod file;
 
 use clap::Subcommand;
 

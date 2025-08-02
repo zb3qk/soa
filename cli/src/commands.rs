@@ -57,6 +57,17 @@ pub enum OutputFormat {
     Csv,
 }
 
+impl OutputFormat {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            OutputFormat::Json => "json",
+            OutputFormat::Toml => "toml",
+            OutputFormat::Yaml => "yaml",
+            OutputFormat::Csv => "csv",
+        }
+    }
+}
+
 pub fn config_add(output: Option<OutputFormat>) {
     let args = crate::agentctl::config::add::AddArgs { output };
     crate::agentctl::config::add::add(&args);
