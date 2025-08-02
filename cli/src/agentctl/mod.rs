@@ -11,8 +11,10 @@ use clap::Subcommand;
 #[derive(Subcommand, Debug)]
 pub enum AgentCtlCommands {
     /// Manage configuration profiles
+    #[command(subcommand)]
     Config(config::ConfigCommands),
     /// Manage environment profiles
+    #[command(subcommand)]
     Env(env::EnvCommands),
     /// Describe an entity by id
     Describe(describe::DescribeArgs),

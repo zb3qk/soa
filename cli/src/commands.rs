@@ -50,6 +50,10 @@ pub fn assign_task(task_id: &str, to: &str) {
     println!("✅ Assignment complete.");
 }
 
+use clap::ValueEnum;
+use std::str::FromStr;
+
+#[derive(Clone, Debug, ValueEnum)]
 pub enum OutputFormat {
     Json,
     Toml,
@@ -64,6 +68,20 @@ impl OutputFormat {
             OutputFormat::Toml => "toml",
             OutputFormat::Yaml => "yaml",
             OutputFormat::Csv => "csv",
+        }
+    }
+}
+
+impl FromStr for OutputFormat {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_lowercase().as_str() {
+            "json" => Ok(OutputFormat::Json),
+            "toml" => Ok(OutputFormat::Toml),
+            "yaml" => Ok(OutputFormat::Yaml),
+            "csv" => Ok(OutputFormat::Csv),
+            _ => Err(format!("Unknown format: {}", s)),
         }
     }
 }
